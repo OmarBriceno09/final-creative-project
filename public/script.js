@@ -109,6 +109,16 @@ var app = new Vue({
     },
   },
   computed: {
-    
-  }
+    sortedScores(){
+      return this.scores.sort((a, b) => {
+                var rval = 0;
+                if(a.win_score > b.win_score) {
+                    rval = -1;
+                } else if(a.win_score < b.win_score) {
+                    rval = 1;
+                }
+                return(rval);
+            })
+    }
+  },
 });
