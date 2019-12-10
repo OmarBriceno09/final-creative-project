@@ -8,6 +8,7 @@ const router = express.Router();
 
 const ticketSchema = new mongoose.Schema({
   name: String,
+  win_score: {type: Number, default: 0},
   problem: String,
 });
 
@@ -26,6 +27,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   const ticket = new Ticket({
     name: req.body.name,
+    win_score:req.body.win_score,
     problem: req.body.problem
   });
   try {

@@ -4,38 +4,89 @@
 <head>
   <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css" />
-  <title>Vue Tickets</title>
+  <title>Rock Paper Scissors</title>
 </head>
 
 <body>
   <div id="app">
     <div class="header">
-      <h1>Ticket System</h1>
+      <h1>Rock Paper Scissors</h1>
     </div>
+    
+    <div v-if="!game_Ends">
+            <!--button @click="gameEnds()" class="delete">End Game</button-->
+            <div class="content">
+              <h1>The Game Ends When You Lose!</h1>
+              <h1>Round {{addedScore}}, Wins: {{numOfWins}}</h1>
+              
+              <div class="flex_container">
+                <div class="image_container">
+                  <img v-bind:src="img_url_p1"></img>
+                </div>
+                <div class="test_1">
+                  <h1>VS.</h1>
+                </div>
+                <div class="image_container">
+                  <img v-bind:src="img_url_p2"></img>
+                </div>
+                
+              </div>
+              <br />
+              <button @click="chooseRock()" type="button" class="other">Rock</button>
+              <button @click="choosePaper()" type="button" class="other">Paper</button>
+              <button @click="chooseScissor()" type="button" class="other">Scissors</button>
+              <br />
+              <br />
+              <!--button @click="gameEnds()" gameEnds() type="button">Play!</button-->
+              
+            </div>
+            <button @click="playMove()" type="button" style="margin-left:100px;"></a>Play!</button>
+    </div>
+    <div v-else>
+            <button @click="playAgain()" type="button" style="margin-left:100px;">Play Again</button>
+    </div>
+    
+    <transition v-if="showForm" name="modal">
+      <div class="modal-mask">
+        <div class="modal-wrapper">
+          <div class="modal-container">
 
-    <div class="content">
-      <form @submit.prevent="addTicket">
-        <input v-model="addedName" placeholder="Name"></p>
-        <textarea v-model="addedProblem"></textarea>
-        <br />
-        <button type="submit">Submit</button>
-      </form>
+            <div class="modal-header">
+              <h1 class="modal-title">You've won {{numOfWins}} time(s)!!</h1>
+            </div>
+            <form @submit.prevent="addScores">
+              <input v-model="addedName" placeholder="Name"></p>
+              <textarea v-model="addedProblem" placeholder="Gamer Quote"></textarea>
+              <br />
+              <button @click="toggleForm" type="submit">Submit</button>
+              <button @click="toggleForm" type="button" class="close">Close</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </transition>
 
-      <h3>Tickets</h3>
-      <div v-for="ticket in tickets">
+    <div class="content" v-if="game_Ends" >
+      <h3>How long others survived without losing!</h3>
+      <div v-for="score in scores">
         <hr>
         <div class="ticket">
           <div class="problem">
-            <p>{{ticket.problem}}</p>
-            <p><i>-- {{ticket.name}}</i></p>
+            <p>Name: {{score.name}} ||Wins: {{score.win_score}}</p>
+            <p><i>-- Gamer Quote: {{score.problem}}</i></p>
           </div>
-          <div class="delete">
-            <button @click="deleteTicket(ticket)" class="delete">Delete</button>
-          </div>
+          <!--div class="delete">
+            <button @click="deleteScore(score)" class="delete">Delete</button>
+          </div-->
         </div>
       </div>
     </div>
   </div>
+  <footer>
+            <hr>
+            <a href="https://github.com/OmarBriceno09/Vue-creative-project" id = "ghub-link">
+            <b>Gitub</b></a>
+  </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.7/vue.js" integrity="sha256-g+Q8DFAmG5+eyRPSydX0LY4TfjsL11XSDrIGerbbEdA=" crossorigin="anonymous"></script>
   <script src="/script.js"></script>

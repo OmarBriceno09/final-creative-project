@@ -2,16 +2,27 @@ body {
   font-family: 'Arimo', sans-serif;
   font-size: 16px;
   margin: 0px;
-  background: #fff;
+  background: #DEF3FF;
 }
 
 /* Header */
 .header {
   display: flex;
   justify-content: space-between;
-  background: #5271B2;
+  background: #C6064C;
   padding: 10px 100px;
   color: white;
+}
+
+.flex_container{
+  display: flex;
+}
+
+.image_container{
+  /*width:400px;*/
+  padding: 50px;
+  height: 400px;
+  /*background-color: #CB08C3;*/
 }
 
 .header a {
@@ -164,4 +175,23 @@ button.close {
 button.close:hover {
   background-color: #888;
   color: white;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+footer {
+  position: relative;
+  right: 0;
+  bottom:0;
+  left: 0;
+  height: 70px;
+  min-height: 60px;
+  width:100%;
+  padding:15px;
+  align-self:flex-end;
+  text-align: center;
+  clear:both;
 }
